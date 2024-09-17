@@ -12,9 +12,9 @@ namespace Employers
         public int Azonosito { get; set; }
         public string Nev { get; set; }
         public int Kor { get; set; }
-        public decimal Kereset { get; set; }
+        public int Kereset { get; set; }
 
-        public Alkalmazott(int azonosito, string nev, int kor, decimal kereset)
+        public Alkalmazott(int azonosito, string nev, int kor, int kereset)
         {
             Azonosito = azonosito;
             Nev = nev;
@@ -45,7 +45,7 @@ namespace Employers
                     var azonosito = int.Parse(reszek[0]);
                     var nev = reszek[1].Trim();
                     var kor = int.Parse(reszek[2]);
-                    var kereset = decimal.Parse(reszek[3]);
+                    var kereset = int.Parse(reszek[3]);
 
                     alkalmazottak.Add(new Alkalmazott(azonosito, nev, kor, kereset));
                 }
@@ -80,10 +80,10 @@ namespace Employers
         try
         {
             var maxKereset = alkalmazottak.Max(a => a.Kereset);
-            var legmagasabbKeresetuek = alkalmazottak.Where(a => a.Kereset == maxKereset);
+            var gazdagok = alkalmazottak.Where(a => a.Kereset == maxKereset);
 
             Console.WriteLine("\nLegmagasabb keresetű alkalmazottak:");
-            foreach (var alkalmazott in legmagasabbKeresetuek)
+            foreach (var alkalmazott in gazdagok)
             {
                 Console.WriteLine($"Azonosító: {alkalmazott.Azonosito}, Név: {alkalmazott.Nev}");
             }
@@ -94,10 +94,10 @@ namespace Employers
         }
 
         const int nyugdijKor = 65;
-        var nyugdijhozKozeliek = alkalmazottak.Where(a => (nyugdijKor - a.Kor) == 10);
+        var idosek = alkalmazottak.Where(a => (nyugdijKor - a.Kor) == 10);
 
         Console.WriteLine("\nNyugdíjhoz közel álló alkalmazottak:");
-        foreach (var alkalmazott in nyugdijhozKozeliek)
+        foreach (var alkalmazott in idosek)
         {
             Console.WriteLine($"Név: {alkalmazott.Nev}, Kor: {alkalmazott.Kor}");
         }
