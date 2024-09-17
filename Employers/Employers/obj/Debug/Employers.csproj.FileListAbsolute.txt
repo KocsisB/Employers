@@ -1,0 +1,2 @@
+C:\Users\Tanulo\Git\Employers\Employers\Employers\obj\Debug\Employers.csproj.AssemblyReference.cache
+C:\Users\Tanulo\Git\Employers\Employers\Employers\obj\Debug\Employers.csproj.CoreCompileInputs.cache
